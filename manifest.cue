@@ -13,6 +13,9 @@
 	ports!: [#port, ...#port]
 	web:     (bool | *false) & category == "web"
 	compose: bool | *false
+	// Needed in case the container needs to be started privileged,
+	// e.g. because it uses nsjail
+	privileged: bool | *false
 }
 
 // Also requires a len() <= 253 check, blocking on cue-lang/cue#575
