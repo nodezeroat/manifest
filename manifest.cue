@@ -14,13 +14,13 @@
 
 #Flag: {
 	value!: string
-	type!:  string
+	type!:  "static" | "env_static" | "env_dynamic"
 }
 
 // Multi-container deployment for yctf-style manifests
 #Deployment: [...{
 	name!: string
-	(path: string) | (image: string)
+	(buildcontext: string) | (image: string)
 	sandbox!: bool
 	ports?: [...string]
 	flag?: #Flag
