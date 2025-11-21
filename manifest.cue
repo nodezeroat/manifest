@@ -10,21 +10,23 @@
 	function!: "linear" | "logarithmic"
 }
 
-#port: uint16 & >0
-
 #Flag: {
 	value!: string
 	type!:  "static" | "env_static" | "env_dynamic"
 }
 
+#PortNum: uint16 & >0
+#Protocol: =~"^[a-z]+$"
+#PortString: "\( #PortNum \)/\( #Protocol \)"
+
 // Multi-container deployment for yctf-style manifests
-#Deployment: [...{
+#Container: {
 	name!: string
 	(buildcontext: string) | (image: string)
-	sandbox!: bool
-	ports?: [...string]
+	sandboxed!: bool
+	ports?: [...#PortString]
 	flag?: #Flag
-}]
+}
 
 // Also requires a len() <= 253 check, blocking on cue-lang/cue#575
 #dns1123subdomain: =~"^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
@@ -37,7 +39,7 @@ author!:       #Author
 points!:       #Points | (int & >0)
 
 // yctf-style multi-container deployment
-deployment?:   #Deployment
+deployment?:   [...#Container]
 
 description!:  string
 
