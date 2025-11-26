@@ -15,14 +15,21 @@
 	type!:  "static" | "env_static" | "env_dynamic"
 }
 
-#PortNum: uint16 & >0
-#Protocol: =~"^[a-z]+$"
-#PortString: "\( #PortNum \)/\( #Protocol \)"
+// Should be replace once cue-lang/cue#575 is passed
+#PortString: S={
+    string
+    _split: strings.SplitN(S, "/", 2)
+    #PortNum: strconv.Atoi(_split[0]) & uint16 & >0
+    #PortProtocol: _split[1] & ("udp" | "tcp" | "http")
+}
 
 // Multi-container deployment for yctf-style manifests
 #Container: {
 	name!: string
-	(buildcontext: string) | (image: string)
+	matchN(1, [
+		{buildcontext!: string, ...},
+		{image!: string, ...}
+	])
 	sandboxed!: bool
 	ports?: [...#PortString]
 	flag?: #Flag
