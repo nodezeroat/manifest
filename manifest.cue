@@ -1,3 +1,8 @@
+import (
+	"strings"
+	"strconv"
+)
+
 #Author: {
 	name!:  string
 	email?: string
