@@ -50,6 +50,7 @@ author!:       #Author
 tags?:		   [...string]
 
 points!:       #Points | (int & >0)
+flag?: string
 
 // yctf-style multi-container deployment
 deployment?:   [...#Container]
