@@ -47,6 +47,7 @@ name!:         #dns1123subdomain
 display_name!: string
 category!:     string
 author!:       #Author
+tags?:		   [...string]
 
 points!:       #Points | (int & >0)
 
@@ -54,6 +55,7 @@ points!:       #Points | (int & >0)
 deployment?:   [...#Container]
 
 description!:  string
+connectinfo?:  string
 
 build: bool | *false
 check: bool | *false
