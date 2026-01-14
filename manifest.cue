@@ -1,3 +1,5 @@
+package manifest
+
 import (
 	"strings"
 	"strconv"
@@ -11,7 +13,7 @@ import (
 #Points: {
 	initial!:  uint32 & >0
 	decay!:    uint32 & >=0
-	minimum!:  uint32 & <=initial
+	minimum!:  uint32 & >0 & <=initial
 	function!: "linear" | "logarithmic"
 }
 
