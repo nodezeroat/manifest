@@ -32,7 +32,7 @@ import (
 
 // Multi-container deployment for yctf-style manifests
 #Container: {
-	name!: string
+	name!: #dns1123subdomain
 	matchN(1, [
 		{buildcontext!: string, ...},
 		{image!: string, ...}
