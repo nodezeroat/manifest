@@ -52,6 +52,7 @@ author!:       #Author
 tags?:		   [...string]
 
 points!:       #Points | (int & >0)
+difficulty!:   "baby" | "easy" | "medium" | "hard"
 flag?: string
 
 // yctf-style multi-container deployment
