@@ -27,7 +27,7 @@ import (
     string
     _split: strings.SplitN(S, "/", 2)
     #PortNum: strconv.Atoi(_split[0]) & uint16 & >0
-    #PortProtocol: _split[1] & ("udp" | "tcp" | "http")
+    #PortProtocol: _split[1] & ("udp" | "tcp" | "http" | "tls")
 }
 
 // Multi-container deployment for yctf-style manifests
